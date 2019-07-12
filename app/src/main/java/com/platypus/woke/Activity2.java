@@ -51,3 +51,9 @@ public class Activity2 extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+
+
+
+// this a new branch 
+
