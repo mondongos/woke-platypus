@@ -47,15 +47,24 @@ public class Activity2 extends AppCompatActivity {
 
         message = findViewById(R.id.textView);
         final String readQuestion = message.getText().toString();
+        final String readAnswer1 = button1.getText().toString();
+        final String readAnswer2 = button2.getText().toString();
+        final String readAnswer3 = button3.getText().toString();
+
+        final String wholeSpeech = readQuestion + "Is it" + readAnswer1 + "Or" + readAnswer2 + "Or" + readAnswer3;
+
 
         speech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+
             @Override
             public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
                     // replace this Locale with whatever you want
-                    Locale localeToUse = new Locale("en","US");
+                    Locale localeToUse = new Locale("en","");
                     speech.setLanguage(localeToUse);
-                    speech.speak(readQuestion, TextToSpeech.QUEUE_FLUSH, null);
+                    speech.setSpeechRate(0.8f);
+//                    speech.speak(readQuestion, TextToSpeech.QUEUE_FLUSH, null);
+                    speech.speak(wholeSpeech, TextToSpeech.QUEUE_FLUSH, null);
                 }
             }
         });
