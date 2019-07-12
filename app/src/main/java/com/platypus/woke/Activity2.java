@@ -2,6 +2,8 @@ package com.platypus.woke;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ public class Activity2 extends AppCompatActivity {
     private Button button1, button2, button3;
     private TextView message;
     private TextToSpeech speech;
+    private SpeechRecognizer recognizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class Activity2 extends AppCompatActivity {
 
         final String wholeSpeech = readQuestion + "Is it" + readAnswer1 + "Or" + readAnswer2 + "Or" + readAnswer3;
 
-
+        initializeSpeechRecognizer();
         speech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
 
             @Override
@@ -63,15 +66,65 @@ public class Activity2 extends AppCompatActivity {
                     Locale localeToUse = new Locale("en","");
                     speech.setLanguage(localeToUse);
                     speech.setSpeechRate(0.8f);
-//                    speech.speak(readQuestion, TextToSpeech.QUEUE_FLUSH, null);
                     speech.speak(wholeSpeech, TextToSpeech.QUEUE_FLUSH, null);
                 }
             }
         });
-
-
     }
 
+    private void initializeSpeechRecognizer() {
+
+        //https://www.youtube.com/watch?v=AnNJPf-4T70
+        if(SpeechRecognizer.isRecognitionAvailable(this)) {
+            recognizer = SpeechRecognizer.createSpeechRecognizer(this);
+            recognizer.setRecognitionListener(new RecognitionListener() {
+                @Override
+                public void onReadyForSpeech(Bundle bundle) {
+
+                }
+
+                @Override
+                public void onBeginningOfSpeech() {
+
+                }
+
+                @Override
+                public void onRmsChanged(float v) {
+
+                }
+
+                @Override
+                public void onBufferReceived(byte[] bytes) {
+
+                }
+
+                @Override
+                public void onEndOfSpeech() {
+
+                }
+
+                @Override
+                public void onError(int i) {
+
+                }
+
+                @Override
+                public void onResults(Bundle bundle) {
+
+                }
+
+                @Override
+                public void onPartialResults(Bundle bundle) {
+
+                }
+
+                @Override
+                public void onEvent(int i, Bundle bundle) {
+
+                }
+            });
+        }
+    }
 
     public void openActivity3(){
         Intent intent = new Intent(this, Activity3.class);
