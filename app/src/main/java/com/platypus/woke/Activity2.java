@@ -1,6 +1,7 @@
 package com.platypus.woke;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.os.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -32,8 +34,10 @@ public class Activity2 extends AppCompatActivity implements AIListener {
     private TextView message, voiceInput, answerOutcome;
     private TextToSpeech speech;
 //    private SpeechRecognizer recognizer;
+    private Handler handler = new Handler(Looper.getMainLooper());
     private AIService aiService;
     private static final int INTERNET = 200;
+    Activity2 autoListen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +98,23 @@ public class Activity2 extends AppCompatActivity implements AIListener {
                 AIConfiguration.RecognitionEngine.System);
             aiService = AIService.getService(this, config);
             aiService.setListener(this);
+        autoListen = Activity2.this;
+        autoListen.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        button4.performClick();
+                    }
+                }, 10000); // ms time to delay until execution
+            }
+        });
         validateOS();
     }
+
+
 
     private void validateOS() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
@@ -170,7 +189,8 @@ public class Activity2 extends AppCompatActivity implements AIListener {
     }
 
 
-};
+}
+
 
 
 
