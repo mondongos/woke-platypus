@@ -142,13 +142,22 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         voiceInput.setText( result1.getResolvedQuery());
         answerOutcome.setVisibility(TextView.VISIBLE);
 
-        { if(answerOutcome.getText().toString().equals(voiceInput.getText().toString())) {
+
+        if (voiceInput.getText().toString().equals("option A")) {
+            button1.performClick();
+        } else if (voiceInput.getText().toString().equals("option b")) {
+            button2.performClick();
+        } else if  (voiceInput.getText().toString().equals("option c")) {
+            button3.performClick();
+        }
+
+
+        if(answerOutcome.getText().toString().equals(voiceInput.getText().toString())) {
             answerOutcome.setText(R.string.correct);
         } else {
             answerOutcome.setText(R.string.incorrect);
         }
 
-        }
 
     }
 
