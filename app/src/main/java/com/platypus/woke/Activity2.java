@@ -39,7 +39,7 @@ import ai.api.model.Result;
 
 public class Activity2 extends AppCompatActivity implements AIListener {
     private Button button1, button2, button3, button4;
-    private TextView message, voiceInput, answerOutcome;
+    private TextView message, voiceInput;
 
     List<QuestionItem> questionItems;
     int currentQuestion = 0;
@@ -54,126 +54,91 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Young Sinatra");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
         button1 = (Button) findViewById(R.id.answerA);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                System.out.println("Young Sinatra v3");
-                if(questionItems.get(currentQuestion).getAnswer1()
-                        .equals(questionItems.get(currentQuestion).getCorrect())) {
-                    // correct
-                    correct++;
-                    Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
-                }else {
-                    // wrong
-                    wrong++;
-                    Toast.makeText(Activity2.this, "Wrong! Correct answer: "
-                            + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
-                }
-                // load next question if any
-
-                if( currentQuestion < questionItems.size() - 1) {
-                    currentQuestion++;
-                    setQuestionScreen(currentQuestion);
-                }
-                else {
-
-                    Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                    intent.putExtra("correct", correct);
-                    intent.putExtra("wrong", wrong);
-                    startActivity(intent);
-                    finish();
-
-                }
-
-            }
-        });
-
         button2 = (Button) findViewById(R.id.answerB);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(questionItems.get(currentQuestion).getAnswer2()
-                        .equals(questionItems.get(currentQuestion).getCorrect())) {
-                    // correct
-                    correct++;
-                    Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
-                }else {
-                    // wrong
-                   wrong++;
-                    Toast.makeText(Activity2.this, "Wrong! Correct answer: "
-                            + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
-                }
-                // load next question if any
-
-                if( currentQuestion < questionItems.size() - 1) {
-                    currentQuestion++;
-                    setQuestionScreen(currentQuestion);
-                }
-
-                else {
-
-                    Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                    intent.putExtra("correct", correct);
-                    intent.putExtra("wrong", wrong);
-                    startActivity(intent);
-                    finish();
-
-                }
-
-            }
-        });
         button3 = (Button) findViewById(R.id.answerC);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(questionItems.get(currentQuestion).getAnswer3()
-                        .equals(questionItems.get(currentQuestion).getCorrect())) {
-                    // correct
-                    correct++;
-                    Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
-                }else {
-                    // wrong
-                    wrong++;
-                    Toast.makeText(Activity2.this, "Wrong! Correct answer: "
-                            + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
-                }
-                // load next question if any
-
-                if( currentQuestion < questionItems.size() - 1) {
-                    currentQuestion++;
-                    setQuestionScreen(currentQuestion);
-                }
-
-                else {
-
-                    Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                    intent.putExtra("correct", correct);
-                    intent.putExtra("wrong", wrong);
-                    startActivity(intent);
-                    finish();
-
-                }
-            }
-        });
         button4 = (Button) findViewById(R.id.listenButton);
-
 
         message = findViewById(R.id.textView);
         voiceInput = findViewById(R.id.resultTextView);
-        answerOutcome = findViewById(R.id.textView2);
 
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getAnswerA();
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getAnswerB();
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getAnswerC();
+            }
+        });
 
         final AIConfiguration config = new AIConfiguration("f5fe8871954f4ef18a7b741ab7d37373",
                 AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System);
             aiService = AIService.getService(this, config);
             aiService.setListener(this);
+        validateOS();
+        //get all questions
+        loadAllQuestions();
+        // shuffle the questions if you want
+        Collections.shuffle(questionItems);
+        // load first question
+        setQuestionScreen(currentQuestion);
+        // automated button-click for listenButton
+        startListen();
+
+    }
+
+    private void validateOS() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, INTERNET);
+        }
+    }
+
+    private void textToVoice(){
+        final String readQuestion = message.getText().toString();
+        final String readAnswer1 = button1.getText().toString();
+        final String readAnswer2 = button2.getText().toString();
+        final String readAnswer3 = button3.getText().toString();
+
+        final String wholeSpeech = readQuestion + "Is it" + readAnswer1 + "Or" + readAnswer2 + "Or" + readAnswer3;
+        speech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    // replace this Locale with whatever you want
+                    Locale localeToUse = new Locale("en","");
+                    voiceInput.setVisibility(TextView.INVISIBLE);
+                    speech.setLanguage(localeToUse);
+                    speech.setSpeechRate(0.8f);
+                    speech.speak(wholeSpeech, TextToSpeech.QUEUE_FLUSH, null);
+                    startListen();
+                }
+            }
+        });
+
+    }
+
+    public void listenButtonOnClick(final View view) {
+        aiService.startListening();
+    }
+
+    public void startListen(){
         autoListen = Activity2.this;
         autoListen.runOnUiThread(new Runnable() {
             @Override
@@ -184,24 +149,29 @@ public class Activity2 extends AppCompatActivity implements AIListener {
                     public void run() {
                         button4.performClick();
                     }
-                }, 10000); // ms time to delay until execution
+                }, 10500); // ms time to delay until execution
             }
-        });
-
-        validateOS();
-
-        //get all questions
-        loadAllQuestions();
-        // shuffle the questions if you want
-        Collections.shuffle(questionItems);
-        // load first question
-        setQuestionScreen(currentQuestion);
+        });}
 
 
+    // Loader method for the json file from assets folder
+    private String loadJsonFromAsset() {
+        String json = "";
+        try {
+            InputStream is = getAssets().open("quiz.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
+
     // set the questions to the screen
-//1
     private void setQuestionScreen(int number) {
         message.setText(questionItems.get(number).getQuestion());
         button1.setText(questionItems.get(number).getAnswer1());
@@ -212,7 +182,6 @@ public class Activity2 extends AppCompatActivity implements AIListener {
     }
 
     // make a list with all the questions
-//2
     private void loadAllQuestions() {
 
         questionItems = new ArrayList<>();
@@ -249,34 +218,95 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
     }
 
+    public void getAnswerA(){
 
-    // Loader method for the json file from assets folder
-//3
-    private String loadJsonFromAsset() {
-        String json = "";
-        try {
-            InputStream is = getAssets().open("quiz.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        }catch (IOException e) {
-            e.printStackTrace();
+        if(questionItems.get(currentQuestion).getAnswer1()
+                            .equals(questionItems.get(currentQuestion).getCorrect())) {
+            // correct
+            correct++;
+            Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
+        }else {
+            // wrong
+            wrong++;
+            Toast.makeText(Activity2.this, "Wrong! Correct answer: "
+                    + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
         }
-        return json;
-    }
+        // load next question if any
 
-
-    private void validateOS() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, INTERNET);
+                    if( currentQuestion < questionItems.size() - 1) {
+            currentQuestion++;
+            setQuestionScreen(currentQuestion);
         }
-    }
+                    else {
 
-    public void listenButtonOnClick(final View view) {
-        aiService.startListening();
-    }
+            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
+            intent.putExtra("correct", correct);
+            intent.putExtra("wrong", wrong);
+            startActivity(intent);
+            finish();
+
+        }}
+
+
+    public void getAnswerB(){
+
+         if(questionItems.get(currentQuestion).getAnswer2()
+                            .equals(questionItems.get(currentQuestion).getCorrect())) {
+            // correct
+            correct++;
+            Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
+        }else {
+            // wrong
+            wrong++;
+            Toast.makeText(Activity2.this, "Wrong! Correct answer: "
+                    + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
+        }
+        // load next question if any
+
+                    if( currentQuestion < questionItems.size() - 1) {
+            currentQuestion++;
+            setQuestionScreen(currentQuestion);
+        }
+
+                    else {
+
+            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
+            intent.putExtra("correct", correct);
+            intent.putExtra("wrong", wrong);
+            startActivity(intent);
+            finish();
+
+        }}
+
+    public void getAnswerC(){
+
+         if(questionItems.get(currentQuestion).getAnswer3()
+                            .equals(questionItems.get(currentQuestion).getCorrect())) {
+            // correct
+            correct++;
+            Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
+        }else {
+            // wrong
+            wrong++;
+            Toast.makeText(Activity2.this, "Wrong! Correct answer: "
+                    + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
+        }
+        // load next question if any
+
+                    if( currentQuestion < questionItems.size() - 1) {
+            currentQuestion++;
+            setQuestionScreen(currentQuestion);
+        }
+
+                    else {
+
+            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
+            intent.putExtra("correct", correct);
+            intent.putExtra("wrong", wrong);
+            startActivity(intent);
+            finish();
+
+        }}
 
     @Override
     public void onResult(AIResponse result) {
@@ -292,26 +322,18 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
         // Show results in TextView.
         voiceInput.setText( result1.getResolvedQuery());
-        answerOutcome.setVisibility(TextView.VISIBLE);
-
+        voiceInput.setVisibility(TextView.VISIBLE);
 
         if (voiceInput.getText().toString().equals("option A")) {
             button1.performClick();
         } else if (voiceInput.getText().toString().equals("option b")) {
             button2.performClick();
-        } else if  (voiceInput.getText().toString().equals("option c")) {
+        } else if  (voiceInput.getText().toString().equals("option C")) {
             button3.performClick();
         }
 
-
-        if(answerOutcome.getText().toString().equals(voiceInput.getText().toString())) {
-            answerOutcome.setText(R.string.correct);
-        } else {
-            answerOutcome.setText(R.string.incorrect);
-        }
-
-
     }
+
 
     @Override
     public void onError(AIError error) {
@@ -337,35 +359,5 @@ public class Activity2 extends AppCompatActivity implements AIListener {
     public void onListeningFinished() {
 
     }
-
-    private void textToVoice(){
-        final String readQuestion = message.getText().toString();
-        final String readAnswer1 = button1.getText().toString();
-        final String readAnswer2 = button2.getText().toString();
-        final String readAnswer3 = button3.getText().toString();
-
-        final String wholeSpeech = readQuestion + "Is it" + readAnswer1 + "Or" + readAnswer2 + "Or" + readAnswer3;
-        speech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    // replace this Locale with whatever you want
-                    Locale localeToUse = new Locale("en","");
-                    speech.setLanguage(localeToUse);
-                    speech.setSpeechRate(0.8f);
-                    speech.speak(wholeSpeech, TextToSpeech.QUEUE_FLUSH, null);
-                }
-            }
-        });
-
-    }
-
 }
-
-
-
-
-
-// this a new branch
 
