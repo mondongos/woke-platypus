@@ -197,25 +197,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         // load first question
         setQuestionScreen(currentQuestion);
 
-        final String readQuestion = message.getText().toString();
-        final String readAnswer1 = button1.getText().toString();
-        final String readAnswer2 = button2.getText().toString();
-        final String readAnswer3 = button3.getText().toString();
 
-        final String wholeSpeech = readQuestion + "Is it" + readAnswer1 + "Or" + readAnswer2 + "Or" + readAnswer3;
-        speech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    // replace this Locale with whatever you want
-                    Locale localeToUse = new Locale("en","");
-                    speech.setLanguage(localeToUse);
-                    speech.setSpeechRate(0.8f);
-                    speech.speak(wholeSpeech, TextToSpeech.QUEUE_FLUSH, null);
-                }
-            }
-        });
     }
 
     // set the questions to the screen
@@ -225,6 +207,8 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         button1.setText(questionItems.get(number).getAnswer1());
         button2.setText(questionItems.get(number).getAnswer2());
         button3.setText(questionItems.get(number).getAnswer3());
+        textToVoice();
+
     }
 
     // make a list with all the questions
@@ -354,7 +338,28 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
     }
 
+    private void textToVoice(){
+        final String readQuestion = message.getText().toString();
+        final String readAnswer1 = button1.getText().toString();
+        final String readAnswer2 = button2.getText().toString();
+        final String readAnswer3 = button3.getText().toString();
 
+        final String wholeSpeech = readQuestion + "Is it" + readAnswer1 + "Or" + readAnswer2 + "Or" + readAnswer3;
+        speech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    // replace this Locale with whatever you want
+                    Locale localeToUse = new Locale("en","");
+                    speech.setLanguage(localeToUse);
+                    speech.setSpeechRate(0.8f);
+                    speech.speak(wholeSpeech, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
+    }
 
 }
 
