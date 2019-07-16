@@ -12,8 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".categories_page"></activity>
-        <activity android:name=".Activity4" />
-        <activity android:name=".Activity3" />
         <activity android:name=".Activity2" />
 
         <meta-data
