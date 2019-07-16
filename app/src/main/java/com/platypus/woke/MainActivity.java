@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("Start");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.startButton);
@@ -29,5 +30,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Hello");
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
+        System.out.println("Finish");
     }
 }
