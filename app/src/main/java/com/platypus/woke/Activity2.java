@@ -115,17 +115,17 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         final String readAnswer2 = button2.getText().toString();
         final String readAnswer3 = button3.getText().toString();
 
-        final String wholeSpeech = readQuestion + "Is it" + readAnswer1 + "Or" + readAnswer2 + "Or" + readAnswer3;
+        final String wholeSpeech = readQuestion + "Is it, A...:" + readAnswer1 + "\nIs it, B...:" + readAnswer2 + "\nIs it, C...:" + readAnswer3;
         speech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
 
             @Override
             public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
                     // replace this Locale with whatever you want
-                    Locale localeToUse = new Locale("en","");
+                    Locale localeToUse = new Locale.Builder().setLanguage("en").setRegion("GB").build();
                     voiceInput.setVisibility(TextView.INVISIBLE);
                     speech.setLanguage(localeToUse);
-                    speech.setSpeechRate(0.8f);
+                    speech.setSpeechRate(1.0f);
                     speech.speak(wholeSpeech, TextToSpeech.QUEUE_FLUSH, null);
                     startListen();
                 }
@@ -284,12 +284,12 @@ public class Activity2 extends AppCompatActivity implements AIListener {
                             .equals(questionItems.get(currentQuestion).getCorrect())) {
             // correct
             correct++;
-            Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_LONG).show();
         }else {
             // wrong
             wrong++;
             Toast.makeText(Activity2.this, "Wrong! Correct answer: "
-                    + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
+                    + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_LONG).show();
         }
         // load next question if any
 
