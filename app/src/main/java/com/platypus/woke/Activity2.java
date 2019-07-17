@@ -38,7 +38,7 @@ import ai.api.model.AIResponse;
 import ai.api.model.Result;
 
 public class Activity2 extends AppCompatActivity implements AIListener {
-    private Button button1, button2, button3, button4;
+    private Button button1, button2, button3, button4, buttonSkip;
     private TextView message, voiceInput, points;
 
 
@@ -63,6 +63,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         button2 = (Button) findViewById(R.id.answerB);
         button3 = (Button) findViewById(R.id.answerC);
         button4 = (Button) findViewById(R.id.listenButton);
+        buttonSkip = (Button) findViewById(R.id.skip);
 
         message = findViewById(R.id.textView);
         voiceInput = findViewById(R.id.resultTextView);
@@ -87,6 +88,13 @@ public class Activity2 extends AppCompatActivity implements AIListener {
             @Override
             public void onClick(View view) {
                 getAnswerC();
+            }
+        });
+
+        buttonSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getAnswerSkip();
             }
         });
 
@@ -181,6 +189,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         button1.setText(questionItems.get(number).getAnswer1());
         button2.setText(questionItems.get(number).getAnswer2());
         button3.setText(questionItems.get(number).getAnswer3());
+        buttonSkip.setText(questionItems.get(number).getSkip());
         textToVoice();
 
     }
@@ -202,6 +211,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
                 String answer2String = question.getString("answer2");
                 String answer3String = question.getString("answer3");
                 String correctString = question.getString("correct");
+                String skipString = question.getString("skip");
 
 
                 questionItems.add(new QuestionItem(
@@ -209,7 +219,8 @@ public class Activity2 extends AppCompatActivity implements AIListener {
                         answer1String,
                         answer2String,
                         answer3String,
-                        correctString
+                        correctString,
+                        skipString
 
                 ));
 
@@ -224,7 +235,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
     public void getAnswerA(){
 
-        if(questionItems.get(currentQuestion).getAnswer1()
+         if(questionItems.get(currentQuestion).getAnswer1()
                             .equals(questionItems.get(currentQuestion).getCorrect())) {
             // correct
             correct+=10;
@@ -313,6 +324,33 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
         }}
 
+        public void getAnswerSkip() {
+
+            if(!questionItems.get(currentQuestion).getSkip()
+                    .equals(questionItems.get(currentQuestion).getCorrect())) {
+                // correct
+//                correct+=10;
+                points.setText("Score: " + correct);
+
+                Toast.makeText(Activity2.this, "Invalid Answer!", Toast.LENGTH_LONG).show();
+            }
+            // load next question if any
+
+            if( currentQuestion < questionItems.size() - 1) {
+                currentQuestion++;
+                setQuestionScreen(currentQuestion);
+            }
+
+            else {
+
+                Intent intent = new Intent(getApplicationContext(), EndActivity.class);
+                intent.putExtra("correct", correct);
+
+                startActivity(intent);
+                finish();
+
+            }}
+
     @Override
     public void onResult(AIResponse result) {
         Result result1 = result.getResult();
@@ -329,13 +367,16 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         voiceInput.setText( result1.getResolvedQuery());
         voiceInput.setVisibility(TextView.VISIBLE);
 
-        if (voiceInput.getText().toString().equals("option A")) {
+        if (voiceInput.getText().toString().contains("option A")) {
             button1.performClick();
-        } else if (voiceInput.getText().toString().equals("option b")) {
+        } else if (voiceInput.getText().toString().contains("option b")) {
             button2.performClick();
-        } else if  (voiceInput.getText().toString().equals("option C")) {
+        } else if  (voiceInput.getText().toString().contains("option C")) {
             button3.performClick();
+        } else {
+            buttonSkip.performClick();
         }
+
 
 
 
