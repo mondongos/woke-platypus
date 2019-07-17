@@ -39,11 +39,13 @@ import ai.api.model.Result;
 
 public class Activity2 extends AppCompatActivity implements AIListener {
     private Button button1, button2, button3, button4;
-    private TextView message, voiceInput;
+    private TextView message, voiceInput, points;
+
 
     List<QuestionItem> questionItems;
     int currentQuestion = 0;
-    int correct = 0, wrong = 0;
+    int correct = 0;
+
 
     private TextToSpeech speech;
     //private SpeechRecognizer recognizer;
@@ -64,6 +66,8 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
         message = findViewById(R.id.textView);
         voiceInput = findViewById(R.id.resultTextView);
+        points = findViewById(R.id.points);
+        points.setText("Score: " + correct);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,11 +227,12 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         if(questionItems.get(currentQuestion).getAnswer1()
                             .equals(questionItems.get(currentQuestion).getCorrect())) {
             // correct
-            correct++;
+            correct+=10;
+            points.setText("Score: " + correct);
+
             Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
         }else {
             // wrong
-            wrong++;
             Toast.makeText(Activity2.this, "Wrong! Correct answer: "
                     + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
         }
@@ -241,7 +246,6 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
             Intent intent = new Intent(getApplicationContext(), EndActivity.class);
             intent.putExtra("correct", correct);
-            intent.putExtra("wrong", wrong);
             startActivity(intent);
             finish();
 
@@ -253,11 +257,12 @@ public class Activity2 extends AppCompatActivity implements AIListener {
          if(questionItems.get(currentQuestion).getAnswer2()
                             .equals(questionItems.get(currentQuestion).getCorrect())) {
             // correct
-            correct++;
-            Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
+            correct+=10;
+             points.setText("Score: " + correct);
+
+             Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_SHORT).show();
         }else {
             // wrong
-            wrong++;
             Toast.makeText(Activity2.this, "Wrong! Correct answer: "
                     + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_SHORT).show();
         }
@@ -272,7 +277,6 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
             Intent intent = new Intent(getApplicationContext(), EndActivity.class);
             intent.putExtra("correct", correct);
-            intent.putExtra("wrong", wrong);
             startActivity(intent);
             finish();
 
@@ -283,11 +287,12 @@ public class Activity2 extends AppCompatActivity implements AIListener {
          if(questionItems.get(currentQuestion).getAnswer3()
                             .equals(questionItems.get(currentQuestion).getCorrect())) {
             // correct
-            correct++;
-            Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_LONG).show();
+            correct+=10;
+             points.setText("Score: " + correct);
+
+             Toast.makeText(Activity2.this, "Correct!", Toast.LENGTH_LONG).show();
         }else {
             // wrong
-            wrong++;
             Toast.makeText(Activity2.this, "Wrong! Correct answer: "
                     + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_LONG).show();
         }
@@ -302,7 +307,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
             Intent intent = new Intent(getApplicationContext(), EndActivity.class);
             intent.putExtra("correct", correct);
-            intent.putExtra("wrong", wrong);
+
             startActivity(intent);
             finish();
 
@@ -332,7 +337,12 @@ public class Activity2 extends AppCompatActivity implements AIListener {
             button3.performClick();
         }
 
+
+
     }
+
+
+
 
 
     @Override

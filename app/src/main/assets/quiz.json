@@ -22,13 +22,6 @@
       "correct": "Madrid"
     },
     {
-      "question": "What are the school colors of the University of Texas at Austin?",
-      "answer1": "Black, Red",
-      "answer2": "Blue, Orange",
-      "answer3": "White, Burnt Orange",
-      "correct": "White, Burnt Orange"
-    },
-    {
       "question": "What is 70 degrees Fahrenheit in Celsius?",
       "answer1": "18.8889",
       "answer2":  "20",
@@ -48,13 +41,6 @@
       "answer2": "7,918 ft",
       "answer3": "29,029 ft",
       "correct": "29,029 ft"
-    },
-    {
-      "question": "What is 48,879 in hexidecimal?",
-      "answer1": "0x18C1",
-      "answer2": "0xBEEF",
-      "answer3": "0xDEAD",
-      "correct": "0xBEEF"
     },
     {
       "question": "In terms of height, what is the world’s largest dog breed?",
@@ -115,7 +101,7 @@
     {
       "question": "What is MVC stands for",
       "answer1": "Minimal Valid Product",
-      "answer2": "Bing",
+      "answer2": "Mighty V",
       "answer3": "Gilbert",
       "correct": "Bing"
     }
