@@ -326,14 +326,18 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
         public void getAnswerSkip() {
 
-            if(!questionItems.get(currentQuestion).getSkip()
-                    .equals(questionItems.get(currentQuestion).getCorrect())) {
+            if(questionItems.get(currentQuestion).getSkip()
+                    .equals(questionItems.get(currentQuestion).getSkip())) {
                 // correct
 //                correct+=10;
                 points.setText("Score: " + correct);
 
-                Toast.makeText(Activity2.this, "Invalid Answer!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity2.this, "Skipped!", Toast.LENGTH_LONG).show();
             }
+            else {
+                // wrong
+                Toast.makeText(Activity2.this, "Invalid Answer! Correct answer: "
+                        + questionItems.get(currentQuestion).getCorrect(), Toast.LENGTH_LONG).show();}
             // load next question if any
 
             if( currentQuestion < questionItems.size() - 1) {
@@ -341,15 +345,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
                 setQuestionScreen(currentQuestion);
             }
 
-            else {
-
-                Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                intent.putExtra("correct", correct);
-
-                startActivity(intent);
-                finish();
-
-            }}
+            }
 
     @Override
     public void onResult(AIResponse result) {
@@ -367,11 +363,11 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         voiceInput.setText( result1.getResolvedQuery());
         voiceInput.setVisibility(TextView.VISIBLE);
 
-        if (voiceInput.getText().toString().contains("option A")) {
+        if (voiceInput.getText().toString().contains("option A") || voiceInput.getText().toString().contains("A") || voiceInput.getText().toString().contains("hey") ) {
             button1.performClick();
-        } else if (voiceInput.getText().toString().contains("option b")) {
+        } else if (voiceInput.getText().toString().contains("option b") || voiceInput.getText().toString().contains("B") || voiceInput.getText().toString().contains("bee") ) {
             button2.performClick();
-        } else if  (voiceInput.getText().toString().contains("option C")) {
+        } else if  (voiceInput.getText().toString().contains("option C") || voiceInput.getText().toString().contains("C") || voiceInput.getText().toString().contains("see") || voiceInput.getText().toString().contains("sea")) {
             button3.performClick();
         } else {
             buttonSkip.performClick();
@@ -381,9 +377,6 @@ public class Activity2 extends AppCompatActivity implements AIListener {
 
 
     }
-
-
-
 
 
     @Override
