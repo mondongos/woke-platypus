@@ -8,13 +8,6 @@
       "correct": "Rhopalocera"
     },
     {
-      "question": "How hot is the surface of the sun?",
-      "answer1": "5,778 K",
-      "answer2": "12,130 K",
-      "answer3": "101,300 K",
-      "correct": "5,778 K"
-    },
-    {
       "question": "Who are the actors in The Internship?",
       "answer1": "Courteney Cox, Matt LeBlanc",
       "answer2": "Kaley Cuoco, Jim Parsons",
@@ -43,20 +36,6 @@
       "correct": "21.1111"
     },
     {
-      "question": "When was Mahatma Gandhi born?",
-      "answer1": "October 2, 1869",
-      "answer2": "December 15, 1872",
-      "answer3": "July 18, 1918",
-      "correct": "October 2, 1869"
-    },
-    {
-      "question": "How far is the moon from Earth?",
-      "answer1": "7,918 miles",
-      "answer2": "86,881 miles",
-      "answer3": "238,400 miles",
-      "correct": "238,400 miles"
-    },
-    {
       "question": "What is 65 times 52?",
       "answer1": "117",
       "answer2": "3120",
@@ -69,13 +48,6 @@
       "answer2": "7,918 ft",
       "answer3": "29,029 ft",
       "correct": "29,029 ft"
-    },
-    {
-      "question": "When did The Avengers come out?",
-      "answer1": "May 2, 2008",
-      "answer2":  "May 4, 2012",
-      "answer3": "May 3, 2013",
-      "correct": "May 4, 2012"
     },
     {
       "question": "What is 48,879 in hexidecimal?",
@@ -101,8 +73,8 @@
     {
       "question": "Kurt Cobain was the lead vocalist with which U.S. rock band?",
       "answer1": "Guns N' Roses",
-      "answer2":  "Nirvana",
-      "answer3":  "Metallica",
+      "answer2": "Nirvana",
+      "answer3": "Metallica",
       "correct": "Nirvana"
     },
     {
@@ -125,6 +97,29 @@
       "answer2":  "Lille",
       "answer3": "Lyon",
       "correct": "Paris"
+    },
+    {
+      "question": "What's the name of Batman's butler?",
+      "answer1": "Alfred",
+      "answer2": "Jeeves",
+      "answer3": "Charles",
+      "correct": "Alfred"
+    },
+    {
+      "question": "What is Chandler's last name?",
+      "answer1": "Bong",
+      "answer2": "Bing",
+      "answer3": "Gilbert",
+      "correct": "Bing"
+    },
+    {
+      "question": "What is MVC stands for",
+      "answer1": "Minimal Valid Product",
+      "answer2": "Bing",
+      "answer3": "Gilbert",
+      "correct": "Bing"
     }
+
+
   ]
 }

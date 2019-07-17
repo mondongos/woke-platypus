@@ -22,4 +22,4 @@ public class EndActivity extends AppCompatActivity {
         tv_result.setText("Correct: " + correct + "\nWrong: " + wrong);
     }
 
-};
+}
