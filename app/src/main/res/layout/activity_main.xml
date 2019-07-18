@@ -35,7 +35,7 @@
             android:layout_marginTop="92dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="P L A T Y P U S"
+            android:text="W O K E"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +45,8 @@
             android:id="@+id/introText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:hint="Speak \n 'A' for first choice\n
@@ -53,11 +55,12 @@
               or 'Skip' to go the the next one.           "
             android:lines="5"
             android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-
-            tools:layout_editor_absoluteY="472dp" />
+            app:layout_constraintTop_toBottomOf="@+id/startButton" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

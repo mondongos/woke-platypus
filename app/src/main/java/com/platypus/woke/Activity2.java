@@ -106,7 +106,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         //get all questions
         loadAllQuestions();
         // shuffle the questions if you want
-        Collections.shuffle(questionItems);
+//        Collections.shuffle(questionItems);
         // load first question
         setQuestionScreen(currentQuestion);
         // automated button-click for listenButton
