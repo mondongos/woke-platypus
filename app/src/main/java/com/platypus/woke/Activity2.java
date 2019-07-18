@@ -1,7 +1,6 @@
 package com.platypus.woke;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -249,18 +248,12 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         }
         // load next question if any
 
-                    if( currentQuestion < questionItems.size() - 1) {
-            currentQuestion++;
-            setQuestionScreen(currentQuestion);
+        currentQuestion++;
+        setQuestionScreen(currentQuestion);
+
+
+
         }
-                    else {
-
-            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-            intent.putExtra("correct", correct);
-            startActivity(intent);
-            finish();
-
-        }}
 
 
     public void getAnswerB(){
@@ -279,19 +272,12 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         }
         // load next question if any
 
-                    if( currentQuestion < questionItems.size() - 1) {
-            currentQuestion++;
-            setQuestionScreen(currentQuestion);
+        currentQuestion++;
+        setQuestionScreen(currentQuestion);
+
+
+
         }
-
-                    else {
-
-            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-            intent.putExtra("correct", correct);
-            startActivity(intent);
-            finish();
-
-        }}
 
     public void getAnswerC(){
 
@@ -309,20 +295,11 @@ public class Activity2 extends AppCompatActivity implements AIListener {
         }
         // load next question if any
 
-                    if( currentQuestion < questionItems.size() - 1) {
-            currentQuestion++;
-            setQuestionScreen(currentQuestion);
+         currentQuestion++;
+         setQuestionScreen(currentQuestion);
+
+
         }
-
-                    else {
-
-            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-            intent.putExtra("correct", correct);
-
-            startActivity(intent);
-            finish();
-
-        }}
 
         public void getAnswerSkip() {
 
