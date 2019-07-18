@@ -48,7 +48,7 @@
             android:hint="Speak \n 'A' for first choice\n
  'B' for second choice \n
   'C' for third choice \n
-              or 'Skip' to go the the next one.           "
+              gor 'Skip' to go the the next one.           "
             android:lines="5"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/startButton"
