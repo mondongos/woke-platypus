@@ -5,14 +5,16 @@
       "answer1": "Coleoptera",
       "answer2": "Formicidae",
       "answer3": "Rhopalocera",
-      "correct": "Rhopalocera"
+      "correct": "Rhopalocera",
+      "skip": "platypus"
     },
     {
       "question": "What is the capital of Spain?",
       "answer1": "Amsterdam",
       "answer2": "Buenos Aires",
       "answer3": "Madrid",
-      "correct": "Madrid"
+      "correct": "Madrid",
+      "skip": "platypus"
     },
     {
       "question": "In terms of height, what is the world’s largest dog breed?",
