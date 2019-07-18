@@ -8,39 +8,11 @@
       "correct": "Rhopalocera"
     },
     {
-      "question": "Who are the actors in The Internship?",
-      "answer1": "Courteney Cox, Matt LeBlanc",
-      "answer2": "Kaley Cuoco, Jim Parsons",
-      "answer3": "Vince Vaughn, Owen Wilson",
-      "correct": "Vince Vaughn, Owen Wilson"
-    },
-    {
       "question": "What is the capital of Spain?",
       "answer1": "Amsterdam",
       "answer2": "Buenos Aires",
       "answer3": "Madrid",
       "correct": "Madrid"
-    },
-    {
-      "question": "What is 70 degrees Fahrenheit in Celsius?",
-      "answer1": "18.8889",
-      "answer2":  "20",
-      "answer3":  "21.1111",
-      "correct": "21.1111"
-    },
-    {
-      "question": "What is 65 times 52?",
-      "answer1": "117",
-      "answer2": "3120",
-      "answer3": "3380",
-      "correct": "3380"
-    },
-    {
-      "question": "How tall is Mount Everest?",
-      "answer1": "6,683 ft",
-      "answer2": "7,918 ft",
-      "answer3": "29,029 ft",
-      "correct": "29,029 ft"
     },
     {
       "question": "In terms of height, what is the world’s largest dog breed?",
@@ -97,15 +69,7 @@
       "answer2": "Bing",
       "answer3": "Gilbert",
       "correct": "Bing"
-    },
-    {
-      "question": "What is MVC stands for",
-      "answer1": "Minimal Valid Product",
-      "answer2": "Mighty V",
-      "answer3": "Gilbert",
-      "correct": "Bing"
     }
-
 
   ]
 }

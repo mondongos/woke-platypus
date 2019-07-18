@@ -21,7 +21,42 @@
             android:text="START GAME"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.987" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Welcome to Platypus Quiz"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/introText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:hint="Speak \n 'Option A' for first question\n
+       'Option B' for second question \n
+   'Option C' for third question \n
+                    or 'Skip' to go the the next one.           "
+            android:lines="5"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/startButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleText"
+            app:layout_constraintVertical_bias="0.84" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
