@@ -160,7 +160,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
                     public void run() {
                         button4.performClick();
                     }
-                }, 10500); // ms time to delay until execution
+                }, 9000); // ms time to delay until execution
             }
         });}
 
@@ -344,7 +344,7 @@ public class Activity2 extends AppCompatActivity implements AIListener {
             button1.performClick();
         } else if (voiceInput.getText().toString().contains("option b") || voiceInput.getText().toString().contains("B") || voiceInput.getText().toString().contains("bee") ) {
             button2.performClick();
-        } else if  (voiceInput.getText().toString().contains("option C") || voiceInput.getText().toString().contains("C") || voiceInput.getText().toString().contains("see") || voiceInput.getText().toString().contains("sea")) {
+        } else if  (voiceInput.getText().toString().contains("option C") || voiceInput.getText().toString().contains("C") || voiceInput.getText().toString().contains("see") || voiceInput.getText().toString().contains("sea") || voiceInput.getText().toString().contains("say")) {
             button3.performClick();
         } else {
             buttonSkip.performClick();

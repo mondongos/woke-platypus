@@ -39,16 +39,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/introText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
-            android:hint="Speak \n 'Option A' for first question\n
-       'Option B' for second question \n
-   'Option C' for third question \n
-                    or 'Skip' to go the the next one.           "
+            android:hint="Speak \n 'A' for first choice\n
+ 'B' for second choice \n
+  'C' for third choice \n
+              or 'Skip' to go the the next one.           "
             android:lines="5"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/startButton"

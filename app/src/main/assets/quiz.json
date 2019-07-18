@@ -6,7 +6,7 @@
       "answer2": "Formicidae",
       "answer3": "Rhopalocera",
       "correct": "Rhopalocera",
-      "skip": "platypus"
+      "skip": "skip"
     },
     {
       "question": "What is the capital of Spain?",
@@ -14,63 +14,71 @@
       "answer2": "Buenos Aires",
       "answer3": "Madrid",
       "correct": "Madrid",
-      "skip": "platypus"
+      "skip": "skip"
     },
     {
       "question": "In terms of height, what is the world’s largest dog breed?",
       "answer1": "Great Dane",
       "answer2": "Neopolitan mastiff",
       "answer3": "Scottish Deerhound",
-      "correct": "Great Dane"
+      "correct": "Great Dane",
+      "skip": "skip"
     },
     {
       "question": "What is the capital of Spain?",
       "answer1": "Berlin",
       "answer2": "Buenos Aires",
       "answer3": "Madrid",
-      "correct": "Madrid"
+      "correct": "Madrid",
+      "skip": "skip"
     },
     {
       "question": "Kurt Cobain was the lead vocalist with which U.S. rock band?",
       "answer1": "Guns N' Roses",
       "answer2": "Nirvana",
       "answer3": "Metallica",
-      "correct": "Nirvana"
+      "correct": "Nirvana",
+      "skip": "skip"
     },
     {
       "question": "In which human organ would you find the hypothalamus?",
       "answer1": "lungs",
       "answer2": "heart",
       "answer3": "brain",
-      "correct": "brain"
+      "correct": "brain",
+      "skip": "skip"
     },
     {
       "question": "What is the capital of India?",
       "answer1": "Hyderabad",
       "answer2": "New Delhi",
       "answer3": "Mumbai",
-      "correct": "New Delhi"
+      "correct": "New Delhi",
+      "skip": "skip"
     },
     {
       "question": "What is the capital of France?",
       "answer1": "Paris",
-      "answer2":  "Lille",
+      "answer2": "Lille",
       "answer3": "Lyon",
-      "correct": "Paris"
+      "correct": "Paris",
+      "skip": "skip"
     },
     {
       "question": "What's the name of Batman's butler?",
       "answer1": "Alfred",
       "answer2": "Jeeves",
       "answer3": "Charles",
-      "correct": "Alfred"
+      "correct": "Alfred",
+      "skip": "skip"
     },
     {
       "question": "What is Chandler's last name?",
       "answer1": "Bong",
       "answer2": "Bing",
       "answer3": "Gilbert",
-      "correct": "Bing"
+      "correct": "Bing",
+      "skip": "skip"
     }
 
   ]
