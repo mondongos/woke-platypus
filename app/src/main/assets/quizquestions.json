@@ -1,0 +1,84 @@
+{
+  "questions": [
+    {
+      "question": "What is the scientific name of a butterfly?",
+      "answer1": "Coleoptera",
+      "answer2": "Formicidae",
+      "answer3": "Rhopalocera",
+      "correct": "Rhopalocera",
+      "skip": "skip"
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "answer1": "Amsterdam",
+      "answer2": "Buenos Aires",
+      "answer3": "Madrid",
+      "correct": "Madrid",
+      "skip": "skip"
+    },
+    {
+      "question": "Kurt Cobain was the vocalist with which U.S. rock band?",
+      "answer1": "Phish",
+      "answer2": "Nirvana",
+      "answer3": "KISS",
+      "correct": "Nirvana",
+      "skip": "skip"
+    },
+    {
+      "question": "In which human organ would you find the hypothalamus?",
+      "answer1": "lungs",
+      "answer2": "heart",
+      "answer3": "brain",
+      "correct": "brain",
+      "skip": "skip"
+    },
+    {
+      "question": "What is the capital of India?",
+      "answer1": "Hyderabad",
+      "answer2": "New Delhi",
+      "answer3": "Mumbai",
+      "correct": "New Delhi",
+      "skip": "skip"
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer1": "Paris",
+      "answer2": "Lille",
+      "answer3": "Lyon",
+      "correct": "Paris",
+      "skip": "skip"
+    },
+    {
+      "question": "What's the name of Batman's butler?",
+      "answer1": "Alfred",
+      "answer2": "Jeeves",
+      "answer3": "Charles",
+      "correct": "Alfred",
+      "skip": "skip"
+    },
+    {
+      "question": "What's the best way to learn to code?",
+      "answer1": "Makers",
+      "answer2": "Stack Overflow",
+      "answer3": "The Big Bang Theory",
+      "correct": "Makers",
+      "skip": "skip"
+    },
+    {
+      "question": "What is Chandler's last name?",
+      "answer1": "Bong",
+      "answer2": "Bing",
+      "answer3": "Gilbert",
+      "correct": "Bing",
+      "skip": "skip"
+    },
+    {
+      "question": "",
+      "answer1": "",
+      "answer2": "",
+      "answer3": "",
+      "correct": "",
+      "skip": "skip"
+    }
+  ]
+}
